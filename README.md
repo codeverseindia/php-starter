@@ -38,13 +38,21 @@ The development server binds to loopback by default. `--host=<IP>` is available 
 ## Structure
 
 - `app/Config/app.php` — application name, environment, storage, and security headers.
-- `app/Controllers/HomeController.php` — the welcome page controller.
-- `app/Views/pages/welcome.php` — the starter welcome page.
+- `app/Controllers/` — page controllers, including Home, About, and Contact.
+- `app/Views/pages/` — server-rendered welcome, About, and Contact pages.
 - `config/route.php` — explicit client route registration.
 - `public/` — the only web document root.
 - `writable/` — private cache and log storage.
 
 Add client controllers and views in `app/`, then register routes explicitly in `config/route.php`. Use `e()` for dynamic HTML output. Do not copy Core source into this project or edit files in `vendor/`.
+
+### Adding a page
+
+1. Create a controller in `app/Controllers/`, with a public action that accepts `Request` and returns `Response`.
+2. Create a server-rendered template in `app/Views/pages/` and escape dynamic values with `e()`.
+3. Register the URL in `config/route.php` using `get()` or `post()` and a stable route name.
+
+Dynamic segments use `{parameter_name}` syntax. For example, `/items/{slug}` passes the matched value to the action as `$params['slug']`. An optional route constraint can restrict the segment, as shown in the commented example in `config/route.php`.
 
 ## Deployment
 
