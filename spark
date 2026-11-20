@@ -1,0 +1,6 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+$application = require __DIR__ . '/bootstrap/app.php';
+exit(CodeverseIndia\LightPHP\Console\Console::run($argv, $application));
